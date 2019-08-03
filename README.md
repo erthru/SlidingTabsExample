@@ -6,7 +6,7 @@
 <br>
 <img src="https://raw.githubusercontent.com/erthru/SlidingTabsExample/master/ss2.png" width="427px" height="737px" />
 <br>
-* Check ViewController.swift for usage
+* Copy UISlidingTabController.swift file into your project. Then check ViewController.swift for example usage
 <br>
 * I will try to build into cocoapods later.
 <br>
