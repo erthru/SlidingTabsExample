@@ -5,3 +5,5 @@
 <img src="https://raw.githubusercontent.com/erthru/SlidingTabsExample/master/ss.png" width="427px" height="737px" />
 <br>
 * Check ViewController.swift for usage
+<br>
+* I will try to build into cocoapods later.

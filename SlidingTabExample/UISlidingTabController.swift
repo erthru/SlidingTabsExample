@@ -19,7 +19,7 @@ class UISimpleSlidingTabController: UIViewController {
     private var colorHeaderActive = UIColor.blue
     private var colorHeaderInActive = UIColor.gray
     private var colorHeaderBackground = UIColor.white
-    var currentPosition = 0
+    private var currentPosition = 0
     
     func addItem(item: UIViewController, title: String){
         items.append(item)
