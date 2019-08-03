@@ -7,3 +7,4 @@
 * Check ViewController.swift for usage
 <br>
 * I will try to build into cocoapods later.
+<br>
