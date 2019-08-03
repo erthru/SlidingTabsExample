@@ -11,19 +11,41 @@ import UIKit
 
 class SlidingViewControllerTwo: UIViewController{
     
-    private let label = UILabel()
+    private let tableView = UITableView()
+    private let tableViewIdentifier = "TABLE_VIEW_IDENTIFIER"
+    private let items = ["A","B","C","D","F","G","H","I"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .darkGray
-        view.addSubview(label)
+        view.addSubview(tableView)
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        label.text = "Second Controller"
-        label.textColor = .white
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = .darkGray
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: tableViewIdentifier)
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
+}
+
+extension SlidingViewControllerTwo: UITableViewDelegate {}
+
+extension SlidingViewControllerTwo: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableViewIdentifier)
+        cell?.backgroundColor = .darkGray
+        cell?.textLabel!.text = items[indexPath.row]
+        cell?.textLabel?.textColor = .white
+        return cell!
+    }
 }

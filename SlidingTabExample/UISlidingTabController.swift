@@ -149,8 +149,15 @@ extension UISimpleSlidingTabController: UICollectionViewDataSource{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionPageIdentifier, for: indexPath)
         let vc = items[indexPath.row]
-        vc.view.frame = cell.bounds
+        
         cell.addSubview(vc.view)
+        
+        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        vc.view.topAnchor.constraint(equalTo: cell.topAnchor, constant: 28).isActive = true
+        vc.view.leadingAnchor.constraint(equalTo: cell.leadingAnchor).isActive = true
+        vc.view.trailingAnchor.constraint(equalTo: cell.trailingAnchor).isActive = true
+        vc.view.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
+        
         return cell
     }
 }
