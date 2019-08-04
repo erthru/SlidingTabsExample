@@ -17,16 +17,20 @@ class SlidingViewControllerTwo: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupUI()
+    }
+    
+    private func setupUI(){
+        // view
         view.addSubview(tableView)
         
+        // tableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = .darkGray
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: tableViewIdentifier)
         tableView.dataSource = self
         tableView.delegate = self
@@ -43,9 +47,7 @@ extension SlidingViewControllerTwo: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableViewIdentifier)
-        cell?.backgroundColor = .darkGray
         cell?.textLabel!.text = items[indexPath.row]
-        cell?.textLabel?.textColor = .white
         return cell!
     }
 }

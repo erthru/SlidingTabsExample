@@ -20,6 +20,8 @@ class UISimpleSlidingTabController: UIViewController {
     private var colorHeaderInActive = UIColor.gray
     private var colorHeaderBackground = UIColor.white
     private var currentPosition = 0
+    private var tabStyle = SlidingTabStyle.fixed
+    private let heightHeader = 57
     
     func addItem(item: UIViewController, title: String){
         items.append(item)
@@ -38,22 +40,47 @@ class UISimpleSlidingTabController: UIViewController {
         colorHeaderInActive = color
     }
     
+    func setCurrentPosition(position: Int){
+        currentPosition = position
+        let path = IndexPath(item: currentPosition, section: 0)
+        
+        DispatchQueue.main.async {
+            if self.tabStyle == .flexible {
+                self.collectionHeader.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
+            }
+            
+            self.collectionHeader.reloadData()
+        }
+        
+        DispatchQueue.main.async {
+           self.collectionPage.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
+        }
+    }
+    
+    func setStyle(style: SlidingTabStyle){
+        tabStyle = style
+    }
+    
     func build(){
+        // view
         view.addSubview(collectionHeader)
         view.addSubview(collectionPage)
         
+        // collectionHeader
         collectionHeader.translatesAutoresizingMaskIntoConstraints = false
-        collectionHeader.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        collectionHeader.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         collectionHeader.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionHeader.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionHeader.heightAnchor.constraint(equalToConstant: 57).isActive = true
-        collectionHeader.backgroundColor = colorHeaderBackground
+        collectionHeader.heightAnchor.constraint(equalToConstant: CGFloat(heightHeader)).isActive = true
         (collectionHeader.collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection = .horizontal
+        collectionHeader.showsHorizontalScrollIndicator = false
+        collectionHeader.backgroundColor = colorHeaderBackground
         collectionHeader.register(HeaderCell.self, forCellWithReuseIdentifier: collectionHeaderIdentifier)
         collectionHeader.delegate = self
         collectionHeader.dataSource = self
         collectionHeader.reloadData()
         
+        // collectionPage
         collectionPage.translatesAutoresizingMaskIntoConstraints = false
         collectionPage.topAnchor.constraint(equalTo: collectionHeader.bottomAnchor).isActive = true
         collectionPage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -76,22 +103,20 @@ class UISimpleSlidingTabController: UIViewController {
     
         var text: String! {
             didSet {
-                self.addSubview(label)
-                label.translatesAutoresizingMaskIntoConstraints = false
-                label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-                label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
                 label.text = text
-                label.font = UIFont.boldSystemFont(ofSize: 18)
             }
         }
         
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            setupUI()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
         func select(didSelect: Bool, activeColor: UIColor, inActiveColor: UIColor){
-            self.addSubview(indicator)
-            indicator.translatesAutoresizingMaskIntoConstraints = false
-            indicator.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-            indicator.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-            indicator.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-            indicator.heightAnchor.constraint(equalToConstant: 2).isActive = true
             indicator.backgroundColor = activeColor
             
             if didSelect {
@@ -103,22 +128,37 @@ class UISimpleSlidingTabController: UIViewController {
             }
         }
         
+        private func setupUI(){
+            // view
+            self.addSubview(label)
+            self.addSubview(indicator)
+            
+            // label
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            label.font = UIFont.boldSystemFont(ofSize: 18)
+            
+            // indicator
+            indicator.translatesAutoresizingMaskIntoConstraints = false
+            indicator.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            indicator.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            indicator.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            indicator.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        }
+        
     }
     
 }
 
 extension UISimpleSlidingTabController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        currentPosition = indexPath.row
-        
-        let path = IndexPath(item: currentPosition, section: 0)
-        collectionPage.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
+        setCurrentPosition(position: indexPath.row)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentIndex = self.collectionPage.contentOffset.x / collectionPage.frame.size.width
-        currentPosition = Int(currentIndex)
-        collectionHeader.reloadData()
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentIndex = Int(self.collectionPage.contentOffset.x / collectionPage.frame.size.width)
+        setCurrentPosition(position: currentIndex)
     }
 }
 
@@ -165,14 +205,27 @@ extension UISimpleSlidingTabController: UICollectionViewDataSource{
 extension UISimpleSlidingTabController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == collectionHeader {
-            let spacer = CGFloat(titles.count)
-            return CGSize(width: view.frame.width / spacer, height: 57)
+            if tabStyle == .fixed {
+                let spacer = CGFloat(titles.count)
+                return CGSize(width: view.frame.width / spacer, height: CGFloat(heightHeader))
+            }else{
+                return CGSize(width: view.frame.width * 20 / 100, height: CGFloat(heightHeader))
+            }
         }
         
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == collectionHeader {
+            return 10
+        }
+        
         return 0
     }
+}
+
+enum SlidingTabStyle: String {
+    case fixed
+    case flexible
 }

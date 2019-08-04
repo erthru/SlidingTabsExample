@@ -1,15 +1,15 @@
 //
-//  SlidingViewControllerOne.swift
+//  SlidingViewControllerThree.swift
 //  SlidingTabExample
 //
-//  Created by Suprianto Djamalu on 03/08/19.
+//  Created by Suprianto Djamalu on 04/08/19.
 //  Copyright © 2019 Suprianto Djamalu. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class SlidingViewControllerOne: UIViewController{
+class SlidingViewControllerThree: UIViewController{
     
     private let label = UILabel()
     
@@ -27,7 +27,7 @@ class SlidingViewControllerOne: UIViewController{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        label.text = "First Controller"
+        label.text = "I'm Controller"
     }
     
 }

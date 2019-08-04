@@ -14,36 +14,42 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        statusBarView.backgroundColor = .orange
-        
+        setupUI()
+    }
+    
+    private func setupUI(){
+        // view
         view.backgroundColor = .white
-        view.addSubview(slidingTabController.view)
+        view.addSubview(slidingTabController.view) // add slidingTabController to main view
         
+        // navigation
+        navigationItem.title = "Sliding Tab Example"
+        navigationController?.navigationBar.barTintColor = .orange
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.barStyle = .black
+        
+        // MARK: slidingTabController
         slidingTabController.view.translatesAutoresizingMaskIntoConstraints = false
         slidingTabController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         slidingTabController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         slidingTabController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         slidingTabController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-        // add item
-        slidingTabController.addItem(item: SlidingViewControllerOne(), title: "First")
-        slidingTabController.addItem(item: SlidingViewControllerTwo(), title: "Second")
-        
-        // colors
+        slidingTabController.addItem(item: SlidingViewControllerOne(), title: "First") // add first item
+        slidingTabController.addItem(item: SlidingViewControllerTwo(), title: "Second") // add second item
+        slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Third") // add other item
+        slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Forth") // add other item
+        slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Fifth") // add other item
+        slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Sixth") // add other item
+        slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Seventh") // add other item
         slidingTabController.setHeaderActiveColor(color: .white) // default blue
         slidingTabController.setHeaderInActiveColor(color: .lightText) // default gray
         slidingTabController.setHeaderBackgroundColor(color: .orange) // default white
-        
-        // build
-        slidingTabController.build()
+        slidingTabController.setCurrentPosition(position: 1) // default 0
+        slidingTabController.setStyle(style: .flexible) // default fixed
+        slidingTabController.build() // build
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .lightContent
-    }
-
 }
 

@@ -14,6 +14,7 @@
 		97721B9E22F5C97900B7F4D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97721B9C22F5C97900B7F4D3 /* LaunchScreen.storyboard */; };
 		97721BA822F5CBD200B7F4D3 /* SlidingViewControllerOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97721BA722F5CBD200B7F4D3 /* SlidingViewControllerOne.swift */; };
 		97721BAA22F5CC2400B7F4D3 /* SlidingViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97721BA922F5CC2400B7F4D3 /* SlidingViewControllerTwo.swift */; };
+		97A0142B22F6AC0E004AA53E /* SlidingViewControllerThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0142A22F6AC0E004AA53E /* SlidingViewControllerThree.swift */; };
 		97F08BC622F5E3B5006758F2 /* UISlidingTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08BC522F5E3B5006758F2 /* UISlidingTabController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		97721B9F22F5C97900B7F4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97721BA722F5CBD200B7F4D3 /* SlidingViewControllerOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingViewControllerOne.swift; sourceTree = "<group>"; };
 		97721BA922F5CC2400B7F4D3 /* SlidingViewControllerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingViewControllerTwo.swift; sourceTree = "<group>"; };
+		97A0142A22F6AC0E004AA53E /* SlidingViewControllerThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingViewControllerThree.swift; sourceTree = "<group>"; };
 		97F08BC522F5E3B5006758F2 /* UISlidingTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISlidingTabController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +66,7 @@
 				97721B9522F5C97800B7F4D3 /* ViewController.swift */,
 				97721BA722F5CBD200B7F4D3 /* SlidingViewControllerOne.swift */,
 				97721BA922F5CC2400B7F4D3 /* SlidingViewControllerTwo.swift */,
+				97A0142A22F6AC0E004AA53E /* SlidingViewControllerThree.swift */,
 				97F08BC522F5E3B5006758F2 /* UISlidingTabController.swift */,
 				97721B9722F5C97800B7F4D3 /* Main.storyboard */,
 				97721B9A22F5C97900B7F4D3 /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 			files = (
 				97721B9622F5C97800B7F4D3 /* ViewController.swift in Sources */,
 				97721BA822F5CBD200B7F4D3 /* SlidingViewControllerOne.swift in Sources */,
+				97A0142B22F6AC0E004AA53E /* SlidingViewControllerThree.swift in Sources */,
 				97721BAA22F5CC2400B7F4D3 /* SlidingViewControllerTwo.swift in Sources */,
 				97F08BC622F5E3B5006758F2 /* UISlidingTabController.swift in Sources */,
 				97721B9422F5C97800B7F4D3 /* AppDelegate.swift in Sources */,
