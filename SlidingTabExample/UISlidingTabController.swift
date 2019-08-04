@@ -157,8 +157,10 @@ extension UISimpleSlidingTabController: UICollectionViewDelegate{
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let currentIndex = Int(self.collectionPage.contentOffset.x / collectionPage.frame.size.width)
-        setCurrentPosition(position: currentIndex)
+        if scrollView == collectionPage{
+            let currentIndex = Int(self.collectionPage.contentOffset.x / collectionPage.frame.size.width)
+            setCurrentPosition(position: currentIndex)
+        }
     }
 }
 

@@ -31,11 +31,6 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .black
         
         // MARK: slidingTabController
-        slidingTabController.view.translatesAutoresizingMaskIntoConstraints = false
-        slidingTabController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        slidingTabController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        slidingTabController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        slidingTabController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         slidingTabController.addItem(item: SlidingViewControllerOne(), title: "First") // add first item
         slidingTabController.addItem(item: SlidingViewControllerTwo(), title: "Second") // add second item
         slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Third") // add other item
