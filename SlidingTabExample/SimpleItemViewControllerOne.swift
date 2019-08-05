@@ -1,5 +1,5 @@
 //
-//  SlidingViewControllerOne.swift
+//  SimpleItemViewControllerOne.swift
 //  SlidingTabExample
 //
 //  Created by Suprianto Djamalu on 03/08/19.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SlidingViewControllerOne: UIViewController{
+class SimpleItemViewControllerOne: UIViewController{
     
     private let label = UILabel()
     

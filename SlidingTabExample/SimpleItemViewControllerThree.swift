@@ -1,5 +1,5 @@
 //
-//  SlidingViewControllerThree.swift
+//  SimpleItemViewControllerThree.swift
 //  SlidingTabExample
 //
 //  Created by Suprianto Djamalu on 04/08/19.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SlidingViewControllerThree: UIViewController{
+class SimpleItemViewControllerThree: UIViewController{
     
     private let label = UILabel()
     

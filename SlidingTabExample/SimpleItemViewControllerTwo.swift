@@ -1,5 +1,5 @@
 //
-//  SlidingViewControllerTwo.swfit
+//  SimpleItemViewControllerTwo.swfit
 //  SlidingTabExample
 //
 //  Created by Suprianto Djamalu on 03/08/19.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SlidingViewControllerTwo: UIViewController{
+class SimpleItemViewControllerTwo: UIViewController{
     
     private let tableView = UITableView()
     private let tableViewIdentifier = "TABLE_VIEW_IDENTIFIER"
@@ -38,9 +38,9 @@ class SlidingViewControllerTwo: UIViewController{
     
 }
 
-extension SlidingViewControllerTwo: UITableViewDelegate {}
+extension SimpleItemViewControllerTwo: UITableViewDelegate {}
 
-extension SlidingViewControllerTwo: UITableViewDataSource {
+extension SimpleItemViewControllerTwo: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }

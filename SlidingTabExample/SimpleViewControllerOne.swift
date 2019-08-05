@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SimpleViewControllerOne.swift
 //  SlidingTabExample
 //
 //  Created by Suprianto Djamalu on 03/08/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SimpleViewControllerOne: UIViewController {
 
     private let slidingTabController = UISimpleSlidingTabController()
     
@@ -31,13 +31,13 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .black
         
         // MARK: slidingTabController
-        slidingTabController.addItem(item: SlidingViewControllerOne(), title: "First") // add first item
-        slidingTabController.addItem(item: SlidingViewControllerTwo(), title: "Second") // add second item
-        slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Third") // add other item
-        slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Forth") // add other item
-        slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Fifth") // add other item
-        slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Sixth") // add other item
-        slidingTabController.addItem(item: SlidingViewControllerThree(), title: "Seventh") // add other item
+        slidingTabController.addItem(item: SimpleItemViewControllerOne(), title: "First") // add first item
+        slidingTabController.addItem(item: SimpleItemViewControllerTwo(), title: "Second") // add second item
+        slidingTabController.addItem(item: SimpleItemViewControllerThree(), title: "Third") // add other item
+        slidingTabController.addItem(item: SimpleItemViewControllerThree(), title: "Forth") // add other item
+        slidingTabController.addItem(item: SimpleItemViewControllerThree(), title: "Fifth") // add other item
+        slidingTabController.addItem(item: SimpleItemViewControllerThree(), title: "Sixth") // add other item
+        slidingTabController.addItem(item: SimpleItemViewControllerThree(), title: "Seventh") // add other item
         slidingTabController.setHeaderActiveColor(color: .white) // default blue
         slidingTabController.setHeaderInActiveColor(color: .lightText) // default gray
         slidingTabController.setHeaderBackgroundColor(color: .orange) // default white
