@@ -10,6 +10,9 @@ import UIKit
 
 class SimpleViewControllerOne: UIViewController {
 
+    // init slidingTabController to add to main view later
+    // or you can just extends the UISimpleSlidingController
+    // see in SimpleViewControllerTwo.swift
     private let slidingTabController = UISimpleSlidingTabController()
     
     override func viewDidLoad() {
