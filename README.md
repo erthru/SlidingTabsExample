@@ -7,4 +7,3 @@
 <br>
 <h5>Flexible:</h5>
 <img src="https://raw.githubusercontent.com/erthru/SlidingTabsExample/master/ss1.gif" width="252px" height="537px" />
-<br>
