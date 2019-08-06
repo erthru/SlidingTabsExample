@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         window = UIWindow()
         window?.makeKeyAndVisible()
-        window?.rootViewController = UINavigationController(rootViewController: SimpleViewControllerTwo())
+        window?.rootViewController = UINavigationController(rootViewController: SimpleViewControllerOne())
         return true
     }
 
