@@ -22,7 +22,22 @@ class UISimpleSlidingTabController: UIViewController {
     private var currentPosition = 0
     private var tabStyle = SlidingTabStyle.fixed
     private let heightHeader = 57
-    
+  
+    override func viewWillLayoutSubviews() {
+      super.viewWillLayoutSubviews()
+      collectionHeader.collectionViewLayout.invalidateLayout()
+      collectionPage.collectionViewLayout.invalidateLayout()
+      
+      let pageOffset = CGPoint(
+        // for landscape mode
+        x: Int((self.view.bounds.width)) * currentPosition ,
+        y: 0
+      )
+      
+      self.collectionPage.setContentOffset(pageOffset, animated: false)
+      self.collectionPage.reloadData()
+    }
+  
     func addItem(item: UIViewController, title: String){
         items.append(item)
         titles.append(title)
@@ -55,6 +70,7 @@ class UISimpleSlidingTabController: UIViewController {
         DispatchQueue.main.async {
            self.collectionPage.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
         }
+      self.collectionPage.reloadData()
     }
     
     func setStyle(style: SlidingTabStyle){
@@ -214,7 +230,6 @@ extension UISimpleSlidingTabController: UICollectionViewDelegateFlowLayout{
                 return CGSize(width: view.frame.width * 20 / 100, height: CGFloat(heightHeader))
             }
         }
-        
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
     
