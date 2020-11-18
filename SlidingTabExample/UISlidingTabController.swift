@@ -61,16 +61,17 @@ class UISimpleSlidingTabController: UIViewController {
         
         DispatchQueue.main.async {
             if self.tabStyle == .flexible {
-                self.collectionHeader.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
+                guard let rectHeader = self.collectionHeader.layoutAttributesForItem(at: path)?.frame else { return }
+                self.collectionHeader.scrollRectToVisible(rectHeader, animated: false)
             }
-            
             self.collectionHeader.reloadData()
         }
         
         DispatchQueue.main.async {
-           self.collectionPage.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
+            guard let rect = self.collectionPage.layoutAttributesForItem(at: path)?.frame else { return }
+            self.collectionPage.scrollRectToVisible(rect, animated: false)
         }
-      self.collectionPage.reloadData()
+        self.collectionPage.reloadData()
     }
     
     func setStyle(style: SlidingTabStyle){
